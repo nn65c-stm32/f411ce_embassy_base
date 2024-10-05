@@ -14,7 +14,7 @@ Video that explains most of the setup [Embedded Rust setup explained](https://ww
 [Install Rust](https://www.rust-lang.org/tools/install)
 
 ## Flash and debug
-[probe-rs](https://www.rust-lang.org/tools/install)
+[probe-rs](https://probe.rs/docs/getting-started/installation/)
 
 Usefull commands:
 ```powershell
@@ -37,12 +37,12 @@ If trouble flashing target:
  WARN probe_rs::probe::stlink: got SwdDpWait/SwdApWait, retrying.
 ```
 - Press and hold **BOOT0**
-- Press and releas **RESET**
+- Press and release **RESET**
 - Release **BOOT0**
 
 ## VS Code
 
-Extensions:
+Recommended extensions:
 - rust-analyzer
 - Even Better TOML
 - Error Lens
