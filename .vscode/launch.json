@@ -1,0 +1,28 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "probe-rs-debug",
+      "request": "launch",
+      "name": "probe-rs Debug",
+      "cwd": "${workspaceFolder}",
+      "chip": "STM32F411CEUx",
+      "runtimeArgs": [
+        "dap-server"
+      ],
+      "flashingConfig": {
+        "flashingEnabled": true,
+        "haltAfterReset": false,
+      },
+      "coreConfigs": [
+        {
+          "coreIndex": 0,
+          "svdFile": "STM32F411.svd",
+          "programBinary": "target/thumbv7em-none-eabihf/debug/${workspaceFolderBasename}",
+          "rttEnabled": true,
+        }
+      ],
+      "consoleLogLevel": "Console"
+    }
+  ]
+}
