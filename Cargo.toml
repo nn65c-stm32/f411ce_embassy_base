@@ -58,6 +58,6 @@ codegen-units = 1           # default = 16
 lto = "fat"                 # default = false
 # debug-assertions = false    # default = false
 # overflow-checks = false     # default = false
-strip = true                # default = false
+# strip = true                # default = false
 # incremental = false         # default = false
 # panic = "unwind"            # default = "unwind"
