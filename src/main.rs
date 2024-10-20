@@ -1,11 +1,14 @@
 #![no_std]
 #![no_main]
 
-use embassy_executor::Spawner;
-use embassy_stm32::{exti::ExtiInput, gpio::{AnyPin, Level, Output, Pin, Pull, Speed}};
-use embassy_time::Timer;
-use defmt::info;
+use defmt::{error, info};
 use defmt_rtt as _;
+use embassy_executor::Spawner;
+use embassy_stm32::{
+    exti::ExtiInput,
+    gpio::{AnyPin, Level, Output, Pin, Pull, Speed},
+};
+use embassy_time::Timer;
 use panic_probe as _;
 
 #[embassy_executor::task]
@@ -23,8 +26,12 @@ async fn blink(pin: AnyPin) {
 #[embassy_executor::main]
 async fn main(spawner: Spawner) {
     let p = embassy_stm32::init(Default::default());
-    defmt::info!("Start");
-    spawner.spawn(blink(p.PC13.degrade())).unwrap();
+
+    info!("Start");
+
+    if let Err(e) = spawner.spawn(blink(p.PC13.degrade())) {
+        error!("Failed to spawn blink task: {:?}", e);
+    }
 
     let mut button = ExtiInput::new(p.PA0, p.EXTI0, Pull::Up);
 
