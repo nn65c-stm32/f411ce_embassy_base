@@ -3,13 +3,14 @@
 
 use defmt::{error, info};
 use defmt_rtt as _;
+use panic_probe as _;
+
 use embassy_executor::Spawner;
 use embassy_stm32::{
     exti::ExtiInput,
     gpio::{AnyPin, Level, Output, Pin, Pull, Speed},
 };
 use embassy_time::Timer;
-use panic_probe as _;
 
 #[embassy_executor::task]
 async fn blink(pin: AnyPin) {
