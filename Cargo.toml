@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-embassy-executor = { version = "0.6.0", features = [
+embassy-executor = { version = "0.6.3", features = [
     "defmt",
     "arch-cortex-m",
     "executor-thread",
@@ -27,7 +27,7 @@ embassy-time = { version = "0.3.2", features = ["defmt", "tick-hz-32_768"] }
 defmt = "0.3.10"
 defmt-rtt = "0.4.1"
 
-cortex-m-rt = "0.7.3"
+cortex-m-rt = "0.7.5"
 cortex-m = { version = "0.7.7", features = ["critical-section-single-core"] }
 panic-probe = { version = "0.3.2", features = ["print-defmt"] }
 
