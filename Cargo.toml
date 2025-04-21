@@ -1,7 +1,7 @@
 [package]
 name = "f411ce_embassy_base"
 version = "0.1.0"
-edition = "2021"
+edition = "2024"
 
 [dependencies]
 embassy-executor = { version = "0.7.0", features = [
@@ -23,22 +23,22 @@ embassy-time = { version = "0.4.0", features = ["defmt", "tick-hz-32_768"] }
 # embassy-futures = { version = "0.1.1", features = ["defmt"] }
 # embassy-usb = { version = "0.3.0", features = ["defmt"] }
 
-defmt = "0.3.10"
-defmt-rtt = "0.4.1"
+defmt = "1.0.1"
+defmt-rtt = "1.0.0"
 
 cortex-m-rt = "0.7.5"
 cortex-m = { version = "0.7.7", features = ["critical-section-single-core"] }
-panic-probe = { version = "0.3.2", features = ["print-defmt"] }
+panic-probe = { version = "1.0.0", features = ["print-defmt"] }
 
-# https://embassy.dev/book/#_cargo_toml_2
-# git ls-remote https://github.com/embassy-rs/embassy.git HEAD
-[patch.crates-io]
-embassy-time = { git = "https://github.com/embassy-rs/embassy", rev = "4fbe1beefeee9dd6a3486739cacd7377f8785808" }
-embassy-executor = { git = "https://github.com/embassy-rs/embassy", rev = "4fbe1beefeee9dd6a3486739cacd7377f8785808" }
-embassy-stm32 = { git = "https://github.com/embassy-rs/embassy", rev = "4fbe1beefeee9dd6a3486739cacd7377f8785808" }
-# embassy-sync = { git = "https://github.com/embassy-rs/embassy", rev = "4fbe1beefeee9dd6a3486739cacd7377f8785808" }
-# embassy-usb = { git = "https://github.com/embassy-rs/embassy", rev = "4fbe1beefeee9dd6a3486739cacd7377f8785808" }
-# embassy-futures = { git = "https://github.com/embassy-rs/embassy", rev = "4fbe1beefeee9dd6a3486739cacd7377f8785808" }
+# # https://embassy.dev/book/#_cargo_toml_2
+# # git ls-remote https://github.com/embassy-rs/embassy.git HEAD
+# [patch.crates-io]
+# embassy-time = { git = "https://github.com/embassy-rs/embassy", rev = "fb5ce05b26ae0c90a872a8e0787c9419178d475a" }
+# embassy-executor = { git = "https://github.com/embassy-rs/embassy", rev = "fb5ce05b26ae0c90a872a8e0787c9419178d475a" }
+# embassy-stm32 = { git = "https://github.com/embassy-rs/embassy", rev = "fb5ce05b26ae0c90a872a8e0787c9419178d475a" }
+# # embassy-sync = { git = "https://github.com/embassy-rs/embassy", rev = "fb5ce05b26ae0c90a872a8e0787c9419178d475a" }
+# # embassy-usb = { git = "https://github.com/embassy-rs/embassy", rev = "fb5ce05b26ae0c90a872a8e0787c9419178d475a" }
+# # embassy-futures = { git = "https://github.com/embassy-rs/embassy", rev = "fb5ce05b26ae0c90a872a8e0787c9419178d475a" }
 
 [profile.dev]
 opt-level = 1               # default = 0
