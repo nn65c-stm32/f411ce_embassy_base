@@ -1,50 +1,19 @@
-# Embedded Rust with Embassy
+# Embedded Rust with STM32 and Embassy
 
-Base Rust project for BlackPill with STM32F411CEU6 and embassy.
+Base Rust project for BlackPill.
 
-Video that explains most of the setup [Embedded Rust setup explained](https://www.youtube.com/watch?v=TOAynddiu5M)
+Board used is [STM32F411CEU6](https://github.com/WeActStudio/WeActStudio.MiniSTM32F4x1).
 
-## Windows build tools
-[Visual Studio C++ Build tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/)
-- MSVC v143 - VS 2022 C++ x64/x86 build tools (latest)
-- Windows 11 SDK
-- C++ CMake tools for Windows (kjøres fra developer prompt)
+## Base setup for STM32 and ST-link programmer
+[Embedded Rust with STM32 and Embassy](https://github.com/nn65c-stm32/.github/blob/main/profile/README.md)
 
-## Rust setup
-[Install Rust](https://www.rust-lang.org/tools/install)
+## Expected results
+Blinking LED.
 
-## Flash and debug
-[probe-rs](https://probe.rs/docs/getting-started/installation/)
-
-Usefull commands:
-```powershell
-cargo install probe-rs-tools --locked --force
-probe-rs chip list | select-string stm32f411ce
-
-rustup update
-rustup target add thumbv7em-none-eabihf
-rustup show
-
-rustup component add llvm-tools
-cargo install cargo-binutils
+Button press:
 ```
-
-If trouble flashing target:
+INFO  Button pressed!
+└─ f411ce_embassy_base::____embassy_main_task::{async_fn#0} @ src\main.rs:41
+INFO  Button released!
+└─ f411ce_embassy_base::____embassy_main_task::{async_fn#0} @ src\main.rs:43
 ```
- WARN probe_rs::probe::stlink: send_jtag_command 242 failed: SwdDpWait
- WARN probe_rs::probe::stlink: got SwdDpWait/SwdApWait, retrying.
- WARN probe_rs::probe::stlink: send_jtag_command 242 failed: SwdDpWait
- WARN probe_rs::probe::stlink: got SwdDpWait/SwdApWait, retrying.
-```
-- Press and hold **BOOT0**
-- Press and release **RESET**
-- Release **BOOT0**
-
-## VS Code
-
-Recommended extensions:
-- rust-analyzer
-- Even Better TOML
-- Error Lens
-- Debugger for probe-rs
-
