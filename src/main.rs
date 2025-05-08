@@ -1,7 +1,7 @@
 #![no_std]
 #![no_main]
 
-use defmt::{error, info};
+use defmt::{error, info, trace};
 use defmt_rtt as _;
 use panic_probe as _;
 
@@ -10,11 +10,17 @@ use embassy_stm32::{
     Peri, Peripherals,
     exti::{AnyChannel, ExtiInput},
     gpio::{AnyPin, Level, Output, Pull, Speed},
+    rcc::{
+        AHBPrescaler, APBPrescaler, Hse, HseMode, Pll, PllMul, PllPDiv, PllPreDiv, PllQDiv,
+        PllSource, Sysclk,
+    },
+    time::Hertz,
 };
 use embassy_time::Timer;
 
 async fn handle_blink(mut led: Output<'static>) {
     loop {
+        trace!("Blinking LED");
         led.set_high();
         Timer::after_millis(150).await;
         led.set_low();
@@ -81,6 +87,25 @@ pub async fn get_button_pin(button: ExtiInput<'static>) {
 
 #[embassy_executor::main]
 async fn main(spawner: Spawner) {
+    let mut config = embassy_stm32::Config::default();
+
+    config.rcc.pll_src = PllSource::HSE;
+    config.rcc.hse = Some(Hse {
+        freq: Hertz(25_000_000),
+        mode: HseMode::Oscillator,
+    });
+    config.rcc.pll = Some(Pll {
+        prediv: PllPreDiv::DIV25,
+        mul: PllMul::MUL200,
+        divp: Some(PllPDiv::DIV2),
+        divq: Some(PllQDiv::DIV4),
+        divr: None,
+    });
+    config.rcc.ahb_pre = AHBPrescaler::DIV1;
+    config.rcc.apb1_pre = APBPrescaler::DIV4;
+    config.rcc.apb2_pre = APBPrescaler::DIV1;
+    config.rcc.sys = Sysclk::PLL1_P;
+
     let p: Peripherals = embassy_stm32::init(Default::default());
 
     info!("Start");
