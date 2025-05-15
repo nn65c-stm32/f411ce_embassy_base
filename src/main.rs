@@ -85,8 +85,8 @@ pub async fn get_button_pin(button: ExtiInput<'static>) {
     handle_button(button).await;
 }
 
-#[embassy_executor::main]
-async fn main(spawner: Spawner) {
+#[allow(dead_code)]
+fn clock_hse_25mhz() -> embassy_stm32::Config {
     let mut config = embassy_stm32::Config::default();
 
     config.rcc.pll_src = PllSource::HSE;
@@ -95,18 +95,50 @@ async fn main(spawner: Spawner) {
         mode: HseMode::Oscillator,
     });
     config.rcc.pll = Some(Pll {
-        prediv: PllPreDiv::DIV25,
-        mul: PllMul::MUL200,
+        prediv: PllPreDiv::DIV12,
+        mul: PllMul::MUL96,
         divp: Some(PllPDiv::DIV2),
-        divq: Some(PllQDiv::DIV4),
+        divq: Some(PllQDiv::DIV5),
         divr: None,
     });
     config.rcc.ahb_pre = AHBPrescaler::DIV1;
-    config.rcc.apb1_pre = APBPrescaler::DIV4;
+    config.rcc.apb1_pre = APBPrescaler::DIV2;
     config.rcc.apb2_pre = APBPrescaler::DIV1;
     config.rcc.sys = Sysclk::PLL1_P;
 
-    let p: Peripherals = embassy_stm32::init(Default::default());
+    config
+}
+
+#[allow(dead_code)]
+fn clock_hse_8mhz() -> embassy_stm32::Config {
+    let mut config = embassy_stm32::Config::default();
+
+    config.rcc.pll_src = PllSource::HSE;
+    config.rcc.hse = Some(Hse {
+        freq: Hertz(8_000_000),
+        mode: HseMode::Oscillator,
+    });
+    config.rcc.pll = Some(Pll {
+        prediv: PllPreDiv::DIV4,
+        mul: PllMul::MUL100,
+        divp: Some(PllPDiv::DIV2),
+        divq: Some(PllQDiv::DIV5),
+        divr: None,
+    });
+    config.rcc.ahb_pre = AHBPrescaler::DIV1;
+    config.rcc.apb1_pre = APBPrescaler::DIV2;
+    config.rcc.apb2_pre = APBPrescaler::DIV1;
+    config.rcc.sys = Sysclk::PLL1_P;
+
+    config
+}
+
+#[embassy_executor::main]
+async fn main(spawner: Spawner) {
+    let config = clock_hse_25mhz();
+    // let config = clock_hse_8mhz();
+
+    let p: Peripherals = embassy_stm32::init(config);
 
     info!("Start");
 
