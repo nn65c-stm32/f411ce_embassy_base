@@ -11,8 +11,7 @@ use embassy_stm32::{
     exti::{AnyChannel, ExtiInput},
     gpio::{AnyPin, Level, Output, Pull, Speed},
     rcc::{
-        AHBPrescaler, APBPrescaler, Hse, HseMode, Pll, PllMul, PllPDiv, PllPreDiv, PllQDiv,
-        PllSource, Sysclk,
+        AHBPrescaler, APBPrescaler, Hse, HseMode, Pll, PllMul, PllPDiv, PllPreDiv, PllQDiv, Sysclk,
     },
     time::Hertz,
 };
@@ -89,7 +88,6 @@ pub async fn get_button_pin(button: ExtiInput<'static>) {
 fn clock_hse_25mhz() -> embassy_stm32::Config {
     let mut config = embassy_stm32::Config::default();
 
-    config.rcc.pll_src = PllSource::HSE;
     config.rcc.hse = Some(Hse {
         freq: Hertz(25_000_000),
         mode: HseMode::Oscillator,
@@ -113,7 +111,6 @@ fn clock_hse_25mhz() -> embassy_stm32::Config {
 fn clock_hse_8mhz() -> embassy_stm32::Config {
     let mut config = embassy_stm32::Config::default();
 
-    config.rcc.pll_src = PllSource::HSE;
     config.rcc.hse = Some(Hse {
         freq: Hertz(8_000_000),
         mode: HseMode::Oscillator,
