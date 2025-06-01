@@ -7,13 +7,9 @@ use panic_probe as _;
 
 use embassy_executor::Spawner;
 use embassy_stm32::{
-    Peri, Peripherals,
-    exti::{AnyChannel, ExtiInput},
-    gpio::{AnyPin, Level, Output, Pull, Speed},
-    rcc::{
-        AHBPrescaler, APBPrescaler, Hse, HseMode, Pll, PllMul, PllPDiv, PllPreDiv, PllQDiv, Sysclk,
-    },
-    time::Hertz,
+    exti::{AnyChannel, ExtiInput}, gpio::{AnyPin, Level, Output, Pull, Speed}, rcc::{
+        AHBPrescaler, APBPrescaler, Hse, HseMode, Pll, PllMul, PllPDiv, PllPreDiv, PllQDiv, PllSource, Sysclk
+    }, time::Hertz, Peri, Peripherals
 };
 use embassy_time::Timer;
 
@@ -88,15 +84,16 @@ pub async fn get_button_pin(button: ExtiInput<'static>) {
 fn clock_hse_25mhz() -> embassy_stm32::Config {
     let mut config = embassy_stm32::Config::default();
 
+    config.rcc.pll_src = PllSource::HSE;
     config.rcc.hse = Some(Hse {
         freq: Hertz(25_000_000),
         mode: HseMode::Oscillator,
     });
     config.rcc.pll = Some(Pll {
-        prediv: PllPreDiv::DIV12,
-        mul: PllMul::MUL96,
+        prediv: PllPreDiv::DIV25,
+        mul: PllMul::MUL200,
         divp: Some(PllPDiv::DIV2),
-        divq: Some(PllQDiv::DIV5),
+        divq: Some(PllQDiv::DIV4),
         divr: None,
     });
     config.rcc.ahb_pre = AHBPrescaler::DIV1;
