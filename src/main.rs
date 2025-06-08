@@ -1,17 +1,21 @@
 #![no_std]
 #![no_main]
 
+mod config;
+
 use defmt::{error, info, trace};
 use defmt_rtt as _;
 use panic_probe as _;
 
 use embassy_executor::Spawner;
 use embassy_stm32::{
-    exti::{AnyChannel, ExtiInput}, gpio::{AnyPin, Level, Output, Pull, Speed}, rcc::{
-        AHBPrescaler, APBPrescaler, Hse, HseMode, Pll, PllMul, PllPDiv, PllPreDiv, PllQDiv, PllSource, Sysclk
-    }, time::Hertz, Peri, Peripherals
+    Peri, Peripherals,
+    exti::{AnyChannel, ExtiInput},
+    gpio::{AnyPin, Level, Output, Pull, Speed},
 };
 use embassy_time::Timer;
+
+use crate::config::rcc_f411;
 
 async fn handle_blink(mut led: Output<'static>) {
     loop {
@@ -80,65 +84,20 @@ pub async fn get_button_pin(button: ExtiInput<'static>) {
     handle_button(button).await;
 }
 
-#[allow(dead_code)]
-fn clock_hse_25mhz() -> embassy_stm32::Config {
-    let mut config = embassy_stm32::Config::default();
-
-    config.rcc.pll_src = PllSource::HSE;
-    config.rcc.hse = Some(Hse {
-        freq: Hertz(25_000_000),
-        mode: HseMode::Oscillator,
-    });
-    config.rcc.pll = Some(Pll {
-        prediv: PllPreDiv::DIV25,
-        mul: PllMul::MUL200,
-        divp: Some(PllPDiv::DIV2),
-        divq: Some(PllQDiv::DIV4),
-        divr: None,
-    });
-    config.rcc.ahb_pre = AHBPrescaler::DIV1;
-    config.rcc.apb1_pre = APBPrescaler::DIV2;
-    config.rcc.apb2_pre = APBPrescaler::DIV1;
-    config.rcc.sys = Sysclk::PLL1_P;
-
-    config
-}
-
-#[allow(dead_code)]
-fn clock_hse_8mhz() -> embassy_stm32::Config {
-    let mut config = embassy_stm32::Config::default();
-
-    config.rcc.hse = Some(Hse {
-        freq: Hertz(8_000_000),
-        mode: HseMode::Oscillator,
-    });
-    config.rcc.pll = Some(Pll {
-        prediv: PllPreDiv::DIV4,
-        mul: PllMul::MUL100,
-        divp: Some(PllPDiv::DIV2),
-        divq: Some(PllQDiv::DIV5),
-        divr: None,
-    });
-    config.rcc.ahb_pre = AHBPrescaler::DIV1;
-    config.rcc.apb1_pre = APBPrescaler::DIV2;
-    config.rcc.apb2_pre = APBPrescaler::DIV1;
-    config.rcc.sys = Sysclk::PLL1_P;
-
-    config
-}
-
 #[embassy_executor::main]
 async fn main(spawner: Spawner) {
-    let config = clock_hse_25mhz();
-    // let config = clock_hse_8mhz();
+    let mut config = embassy_stm32::Config::default();
+    
+    rcc_f411::init_25mhz_hse_100mhz(&mut config);
+    // rcc_f411::init_8mhz_hse_100mhz(&mut config);
 
     let p: Peripherals = embassy_stm32::init(config);
-
+    
     info!("Start");
-
+    
     let led_pin_level = Level::Low;
     let led_pin_speed = Speed::High;
-
+    
     // let led_anypin = p.PC13.into();
     // if let Err(e) = spawner.spawn(blink_anypin(led_anypin, led_pin_level, led_pin_speed)) {
     //     error!("Failed to spawn blink_anypin task: {:?}", e);
