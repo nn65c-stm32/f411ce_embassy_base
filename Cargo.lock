@@ -76,9 +76,9 @@ checksum = "1fd0f2584146f6f2ef48085050886acf353beff7305ebd1ae69500e27c67f64b"
 
 [[package]]
 name = "cfg-if"
-version = "1.0.0"
+version = "1.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
+checksum = "9555578bc9e57714c812a1f84e4fc5b4d21fcb063490c624de019f7464c91268"
 
 [[package]]
 name = "cortex-m"
@@ -217,7 +217,7 @@ dependencies = [
 [[package]]
 name = "embassy-embedded-hal"
 version = "0.3.0"
-source = "git+https://github.com/embassy-rs/embassy?rev=6186d111a5c150946ee5b7e9e68d987a38c1a463#6186d111a5c150946ee5b7e9e68d987a38c1a463"
+source = "git+https://github.com/embassy-rs/embassy?rev=56572ef0adffd6258adc10fb424e37a8b4ddc19c#56572ef0adffd6258adc10fb424e37a8b4ddc19c"
 dependencies = [
  "defmt 1.0.1",
  "embassy-futures",
@@ -235,7 +235,7 @@ dependencies = [
 [[package]]
 name = "embassy-executor"
 version = "0.7.0"
-source = "git+https://github.com/embassy-rs/embassy?rev=6186d111a5c150946ee5b7e9e68d987a38c1a463#6186d111a5c150946ee5b7e9e68d987a38c1a463"
+source = "git+https://github.com/embassy-rs/embassy?rev=56572ef0adffd6258adc10fb424e37a8b4ddc19c#56572ef0adffd6258adc10fb424e37a8b4ddc19c"
 dependencies = [
  "cortex-m",
  "critical-section",
@@ -247,7 +247,7 @@ dependencies = [
 [[package]]
 name = "embassy-executor-macros"
 version = "0.6.2"
-source = "git+https://github.com/embassy-rs/embassy?rev=6186d111a5c150946ee5b7e9e68d987a38c1a463#6186d111a5c150946ee5b7e9e68d987a38c1a463"
+source = "git+https://github.com/embassy-rs/embassy?rev=56572ef0adffd6258adc10fb424e37a8b4ddc19c#56572ef0adffd6258adc10fb424e37a8b4ddc19c"
 dependencies = [
  "darling",
  "proc-macro2",
@@ -258,12 +258,12 @@ dependencies = [
 [[package]]
 name = "embassy-futures"
 version = "0.1.1"
-source = "git+https://github.com/embassy-rs/embassy?rev=6186d111a5c150946ee5b7e9e68d987a38c1a463#6186d111a5c150946ee5b7e9e68d987a38c1a463"
+source = "git+https://github.com/embassy-rs/embassy?rev=56572ef0adffd6258adc10fb424e37a8b4ddc19c#56572ef0adffd6258adc10fb424e37a8b4ddc19c"
 
 [[package]]
 name = "embassy-hal-internal"
 version = "0.2.0"
-source = "git+https://github.com/embassy-rs/embassy?rev=6186d111a5c150946ee5b7e9e68d987a38c1a463#6186d111a5c150946ee5b7e9e68d987a38c1a463"
+source = "git+https://github.com/embassy-rs/embassy?rev=56572ef0adffd6258adc10fb424e37a8b4ddc19c#56572ef0adffd6258adc10fb424e37a8b4ddc19c"
 dependencies = [
  "cortex-m",
  "critical-section",
@@ -274,7 +274,7 @@ dependencies = [
 [[package]]
 name = "embassy-net-driver"
 version = "0.2.0"
-source = "git+https://github.com/embassy-rs/embassy?rev=6186d111a5c150946ee5b7e9e68d987a38c1a463#6186d111a5c150946ee5b7e9e68d987a38c1a463"
+source = "git+https://github.com/embassy-rs/embassy?rev=56572ef0adffd6258adc10fb424e37a8b4ddc19c#56572ef0adffd6258adc10fb424e37a8b4ddc19c"
 dependencies = [
  "defmt 1.0.1",
 ]
@@ -282,7 +282,7 @@ dependencies = [
 [[package]]
 name = "embassy-stm32"
 version = "0.2.0"
-source = "git+https://github.com/embassy-rs/embassy?rev=6186d111a5c150946ee5b7e9e68d987a38c1a463#6186d111a5c150946ee5b7e9e68d987a38c1a463"
+source = "git+https://github.com/embassy-rs/embassy?rev=56572ef0adffd6258adc10fb424e37a8b4ddc19c#56572ef0adffd6258adc10fb424e37a8b4ddc19c"
 dependencies = [
  "aligned",
  "bit_field",
@@ -330,7 +330,7 @@ dependencies = [
 [[package]]
 name = "embassy-sync"
 version = "0.7.0"
-source = "git+https://github.com/embassy-rs/embassy?rev=6186d111a5c150946ee5b7e9e68d987a38c1a463#6186d111a5c150946ee5b7e9e68d987a38c1a463"
+source = "git+https://github.com/embassy-rs/embassy?rev=56572ef0adffd6258adc10fb424e37a8b4ddc19c#56572ef0adffd6258adc10fb424e37a8b4ddc19c"
 dependencies = [
  "cfg-if",
  "critical-section",
@@ -344,7 +344,7 @@ dependencies = [
 [[package]]
 name = "embassy-time"
 version = "0.4.0"
-source = "git+https://github.com/embassy-rs/embassy?rev=6186d111a5c150946ee5b7e9e68d987a38c1a463#6186d111a5c150946ee5b7e9e68d987a38c1a463"
+source = "git+https://github.com/embassy-rs/embassy?rev=56572ef0adffd6258adc10fb424e37a8b4ddc19c#56572ef0adffd6258adc10fb424e37a8b4ddc19c"
 dependencies = [
  "cfg-if",
  "critical-section",
@@ -360,7 +360,7 @@ dependencies = [
 [[package]]
 name = "embassy-time-driver"
 version = "0.2.0"
-source = "git+https://github.com/embassy-rs/embassy?rev=6186d111a5c150946ee5b7e9e68d987a38c1a463#6186d111a5c150946ee5b7e9e68d987a38c1a463"
+source = "git+https://github.com/embassy-rs/embassy?rev=56572ef0adffd6258adc10fb424e37a8b4ddc19c#56572ef0adffd6258adc10fb424e37a8b4ddc19c"
 dependencies = [
  "document-features",
 ]
@@ -368,7 +368,7 @@ dependencies = [
 [[package]]
 name = "embassy-time-queue-utils"
 version = "0.1.0"
-source = "git+https://github.com/embassy-rs/embassy?rev=6186d111a5c150946ee5b7e9e68d987a38c1a463#6186d111a5c150946ee5b7e9e68d987a38c1a463"
+source = "git+https://github.com/embassy-rs/embassy?rev=56572ef0adffd6258adc10fb424e37a8b4ddc19c#56572ef0adffd6258adc10fb424e37a8b4ddc19c"
 dependencies = [
  "embassy-executor",
  "heapless",
@@ -377,7 +377,7 @@ dependencies = [
 [[package]]
 name = "embassy-usb-driver"
 version = "0.1.0"
-source = "git+https://github.com/embassy-rs/embassy?rev=6186d111a5c150946ee5b7e9e68d987a38c1a463#6186d111a5c150946ee5b7e9e68d987a38c1a463"
+source = "git+https://github.com/embassy-rs/embassy?rev=56572ef0adffd6258adc10fb424e37a8b4ddc19c#56572ef0adffd6258adc10fb424e37a8b4ddc19c"
 dependencies = [
  "defmt 1.0.1",
  "embedded-io-async",
@@ -386,7 +386,7 @@ dependencies = [
 [[package]]
 name = "embassy-usb-synopsys-otg"
 version = "0.2.0"
-source = "git+https://github.com/embassy-rs/embassy?rev=6186d111a5c150946ee5b7e9e68d987a38c1a463#6186d111a5c150946ee5b7e9e68d987a38c1a463"
+source = "git+https://github.com/embassy-rs/embassy?rev=56572ef0adffd6258adc10fb424e37a8b4ddc19c#56572ef0adffd6258adc10fb424e37a8b4ddc19c"
 dependencies = [
  "critical-section",
  "defmt 1.0.1",
@@ -719,9 +719,9 @@ checksum = "7da8b5736845d9f2fcb837ea5d9e2628564b3b043a70948a3f0b778838c5fb4f"
 
 [[package]]
 name = "syn"
-version = "2.0.101"
+version = "2.0.102"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8ce2b7fc941b3a24138a0a7cf8e858bfc6a992e7978a068a5c760deb0ed43caf"
+checksum = "f6397daf94fa90f058bd0fd88429dd9e5738999cca8d701813c80723add80462"
 dependencies = [
  "proc-macro2",
  "quote",
