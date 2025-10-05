@@ -5,7 +5,7 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-embassy-executor = { version = "0.9.0", features = [
+embassy-executor = { version = "0.9.1", features = [
     "defmt",
     "arch-cortex-m",
     "executor-thread",
@@ -36,7 +36,7 @@ panic-probe = { version = "1.0.0", features = ["print-defmt"] }
 
 # https://embassy.dev/book/#_cargo_toml_2
 # git ls-remote https://github.com/embassy-rs/embassy.git HEAD
-[patch.crates-io]
+# [patch.crates-io]
 # embassy-time = { git = "https://github.com/embassy-rs/embassy", rev = "e145a653cf9d31f101b0735406b8b7c9208bc1da" }
 # embassy-executor = { git = "https://github.com/embassy-rs/embassy", rev = "e145a653cf9d31f101b0735406b8b7c9208bc1da" }
 # embassy-stm32 = { git = "https://github.com/embassy-rs/embassy", rev = "e145a653cf9d31f101b0735406b8b7c9208bc1da" }
